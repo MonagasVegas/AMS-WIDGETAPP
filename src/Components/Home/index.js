@@ -1,15 +1,16 @@
 import React from 'react'
+import { Header } from './Header'
+import ilustracion from '../../assets/images/ilustracion.png'
 
 function Home () {
   return (
-    <div>
-      <h1 className='font-bold text-md text-blue100_dark bg-gray-400'>
-        Home page hola
-      </h1>
-      <div className='bg-blue-500'>
-        <p>Hola</p>
+    <div className='w-full'>
+      <div>
+        <Header />
       </div>
-
+      <div className='self-center flex justify-center w-full'>
+        <img src={ilustracion} className='w-3/5 mt-10' />
+      </div>
     </div>
   )
 }
