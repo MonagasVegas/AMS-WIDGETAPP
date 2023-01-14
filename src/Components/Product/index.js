@@ -5,9 +5,11 @@ import Img from '../../atomic-components/tags/Img'
 import image from '../../assets/images/image.png'
 import { getProducts } from '../../services/getProducts'
 import { Header } from '../Home/Header'
+import { useNavigate } from 'react-router-dom'
 
 const Product = () => {
   const [products, setProducts] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     getProducts().then(res => {
@@ -17,6 +19,10 @@ const Product = () => {
       console.log(error)
     })
   }, [])
+
+  const handleDetail = () => {
+    navigate('/productDetails')
+  }
 
   return (
 
@@ -34,7 +40,7 @@ const Product = () => {
         </div>
         <div className='py-4 grid grid-cols-4 gap-4 px-3'>
           {products.map((product) => (
-            <Card key={product.id} className='flex flex-col gap-1 p-3 mt-4 cursor-pointer'>
+            <Card key={product.id} className='flex flex-col gap-1 p-3 mt-4 cursor-pointer' onClick={handleDetail}>
               <header className=' w-2/5 flex flex-row self-center'>
                 <div className='rounded-lg  overflow-hidden'>
                   <Img
