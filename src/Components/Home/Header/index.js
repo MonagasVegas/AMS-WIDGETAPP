@@ -2,7 +2,7 @@ import React from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import Button from '@material-ui/core/Button'
-import MenuIcon from '@material-ui/icons/Menu'
+import MenuRoundedIcon from '@material-ui/icons/MenuRounded'
 import { Box } from '@material-ui/core'
 import logo from '../../../assets/images/logo.png'
 import { useNavigate } from 'react-router-dom'
@@ -18,16 +18,13 @@ function Header () {
     <div className='bg-[#F5F5F5] h-[55px]'>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
         <div className='flex w-full h-full justify-between'>
-          <div className='self-center flex  '>
+          <div className='self-center flex  ml-5 '>
             <Button onClick={handleClick}>
               <img src={logo} className='w-10 h-10' />
             </Button>
-
-            <div className='bg-[#EDE7F6] rounded-md h-9  p-[6px] ml-20 self-center'>
-              <MenuIcon className='self-center w-1/2 ' />
-            </div>
+            <MenuRoundedIcon className='self-center  ' />
           </div>
-          <div className='self-center flex mr-20 '>
+          <div className='self-center flex mr-14 '>
             <ShoppingCartIcon className='justify-between mr-5 self-center' />
             <AccountCircleIcon />
           </div>

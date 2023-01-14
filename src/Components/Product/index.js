@@ -9,6 +9,10 @@ import { useNavigate } from 'react-router-dom'
 
 const Product = () => {
   const [products, setProducts] = useState([])
+  //* productos filtrados.
+  const [filterProducts, setFiltersProducts] = useState([])
+  /** query de busqueda o condicion de filtrado, el texto que escribes */
+  const [searchQuery, setSearchQuery] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -20,9 +24,28 @@ const Product = () => {
     })
   }, [])
 
-  const handleDetail = () => {
-    navigate('/productDetails')
+  const handleDetail = (event) => {
+    console.log(event.currentTarget.id)
+    const id = event.currentTarget.id
+    navigate(`/product/${id}`)
   }
+
+  const onChangeSearchQuery = (event) => {
+    setSearchQuery(event.target.value)
+  }
+
+  useEffect(() => {
+    /** Cuando no hay searchQuery/ clausula de guarda , si no hay query de busqyeda se asigna todos los productos. */
+    if (!searchQuery) {
+      setFiltersProducts(products)
+      return
+    }
+
+    // garantizando las minusculas con el tolowerCase.
+    const newSearchQuery = searchQuery?.toLowerCase() || ''
+    const newProduct = products.filter(product => product.brand.toLowerCase().includes(newSearchQuery) || product.model.toLowerCase().includes(newSearchQuery))
+    setFiltersProducts(newProduct)
+  }, [searchQuery, products])
 
   return (
 
@@ -34,13 +57,14 @@ const Product = () => {
       <div className='bg-[#f9fafc] rounded-md py-4 border border-neutral20 w-11/12 sm:ml-8 sm:mt-4 '>
         <div className=' flex justify-end '>
           <SearchBar
+            onChange={onChangeSearchQuery}
             className='w-2/4 mr-3 '
             placeholder='Buscar producto'
           />
         </div>
         <div className='py-4 grid grid-cols-4 gap-4 px-3'>
-          {products.map((product) => (
-            <Card key={product.id} className='flex flex-col gap-1 p-3 mt-4 cursor-pointer' onClick={handleDetail}>
+          {filterProducts.map((product) => (
+            <Card key={product.id} className='flex flex-col gap-1 p-3 mt-4 cursor-pointer' onClick={handleDetail} id={product.id}>
               <header className=' w-2/5 flex flex-row self-center'>
                 <div className='rounded-lg  overflow-hidden'>
                   <Img
