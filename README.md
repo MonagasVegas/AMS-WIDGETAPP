@@ -35,3 +35,7 @@ Dicha aplicación posee una capa de persistencia de datos:
 
 Posee un almacenaje de los datos que se reciban desde el API. ofrece un sistema de cacheo, para que no se realicen múltiples peticiones al API. Se almacena la información cada vez que se solicite el servicio del API , guarda dicha información, y tendrá una expiración de 1 hora, una vez excedido dicho tiempo,  revalida la información,  Se utiliza cualquier método de storage para almacenar dicha información, ya sea del navegador o en memoria, pero siempre en cliente.
 
+
+
+DEPLOY EN GITHUB PAGES: 
+https://monagasvegas.github.io/AMS-WIDGETAPP/
