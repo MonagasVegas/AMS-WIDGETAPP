@@ -41,7 +41,7 @@ const ProductDetails = () => {
       const response = res.data.count
       createStorage('@shoppingcart', '')
       saveItem('@shoppingcart', JSON.stringify(response))
-      console.log(response)
+      console.log({ response })
       navigate('/')
     }).catch((error) => {
       console.log(error)
