@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/AMS-WIDGETAPP/static/css/main.91f6126f.css",
+    "main.js": "/AMS-WIDGETAPP/static/js/main.f049d3b5.js",
+    "static/js/787.fd0a5c21.chunk.js": "/AMS-WIDGETAPP/static/js/787.fd0a5c21.chunk.js",
+    "static/media/ilustracion.png": "/AMS-WIDGETAPP/static/media/ilustracion.1a712aed9f8bb9531f51.png",
+    "static/media/logo.png": "/AMS-WIDGETAPP/static/media/logo.1df3705565a746b2f9de.png",
+    "index.html": "/AMS-WIDGETAPP/index.html",
+    "static/media/SearchIcon.svg": "/AMS-WIDGETAPP/static/media/SearchIcon.8875f931c8d62d3c29fd7fcd4feefa26.svg",
+    "main.91f6126f.css.map": "/AMS-WIDGETAPP/static/css/main.91f6126f.css.map",
+    "main.f049d3b5.js.map": "/AMS-WIDGETAPP/static/js/main.f049d3b5.js.map",
+    "787.fd0a5c21.chunk.js.map": "/AMS-WIDGETAPP/static/js/787.fd0a5c21.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.91f6126f.css",
+    "static/js/main.f049d3b5.js"
+  ]
+}
