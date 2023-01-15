@@ -5,15 +5,16 @@ import Card from '../Reusable/Card'
 import image from '../../assets/images/image.png'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getProductsById } from '../../services/getProductsById'
-// import { postProducts } from '../../services/postProducts'
+import { postProducts } from '../../services/postProducts'
+import useLocalStorage from '../Hooks/useLocalStorage'
 
 const ProductDetails = () => {
   const [product, setProduct] = useState([])
   const [seletedColor, setSeletedColor] = useState(null)
   const [selectedStorage, setSelectedStorage] = useState(null)
-
   const navigate = useNavigate()
   const { productID } = useParams()
+  const { createStorage, saveItem } = useLocalStorage()
 
   const handleGoBack = () => {
     navigate(-1)
@@ -29,21 +30,27 @@ const ProductDetails = () => {
     })
   }, [productID])
 
-  // const handleSubmit = () => {
-  //   const body = {}
+  const handleSubmit = () => {
+    const body = {
+      id: productID,
+      colorCode: seletedColor,
+      storageCode: selectedStorage
+    }
 
-  //   postProducts(body).then(res => {
-  //     console.log(res)
-  //   }).catch((error) => {
-  //     console.log(error)
-  //   })
-  // }
+    postProducts(body).then(res => {
+      const response = res.data.count
+      createStorage('@shoppingcart', '')
+      saveItem('@shoppingcart', JSON.stringify(response))
+      console.log(response)
+      navigate('/')
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
 
   const handleSelectOptions = (event, optionType) => {
     /** obtener el codigo, el id, la opcion seleccionada. */
     const code = event.currentTarget.id
-    console.log(code)
-    console.log(optionType)
     if (optionType === 'color') {
       setSeletedColor(product.options.colors.find(color => String(color.code) === code))
     } else {
@@ -113,7 +120,7 @@ const ProductDetails = () => {
                 </div>
                 <div className='w-full grid grid-cols-3 gap-2 '>
                   {product?.options?.storages.map((storage) => (
-                    <Card key={storage.code} id={storage.code} className={`w-1/2 py-2 cursor-pointer ${storage.code === selectedStorage?.code ? 'bg-red-500' : ''}`} onClick={(event) => handleSelectOptions(event, 'storage')}>
+                    <Card key={storage.code} id={storage.code} className={`w-1/2 py-2 cursor-pointer ${storage.code === selectedStorage?.code ? 'bg-red-200 bg-opacity-25 border border-red-700' : ''}`} onClick={(event) => handleSelectOptions(event, 'storage')}>
                       <p className='text-[12px] text-center not-italic font-semibold text-[#013348] '>{`${storage.name}` || '-'}</p>
                     </Card>
                   ))}
@@ -123,7 +130,7 @@ const ProductDetails = () => {
                 </div>
                 <div className='w-full grid grid-cols-4 gap-1 '>
                   {product?.options?.colors?.map((color) => (
-                    <Card key={color.code} id={color.code} className={`w-1/2 py-2 cursor-pointer ${color.code === seletedColor?.code ? 'shadow-sm bg-red-500' : ''}`} onClick={(event) => handleSelectOptions(event, 'color')}>
+                    <Card key={color.code} id={color.code} className={`w-1/2 py-2 cursor-pointer ${color.code === seletedColor?.code ? 'bg-red-200 bg-opacity-25 border border-red-700' : ''}`} onClick={(event) => handleSelectOptions(event, 'color')}>
                       <p className='text-[12px] text-center not-italic font-semibold text-[#013348] '>{`${color.name}` || '-'}</p>
                     </Card>
                   ))}
@@ -132,7 +139,7 @@ const ProductDetails = () => {
 
               <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
               <div className='flex justify-end'>
-                <button className='rounded-full mr-8 py-1 px-4 bg-[#dfdee3]'><p className='text-[#0e3453]'>Añadir</p></button>
+                <button className='rounded-full mr-8 py-1 px-4 bg-[#dfdee3]' onClick={handleSubmit}><p className='text-[#0e3453]'>Añadir</p></button>
                 <button className='rounded-full py-1 px-4 bg-[#dfdee3]' onClick={handleGoBack}><p className='text-[#0e3453]'>Volver</p></button>
               </div>
               <div>&nbsp;&nbsp;</div>

@@ -25,6 +25,7 @@ const Product = () => {
     // }).catch((error) => {
     //   console.log(error)
     // })
+    /** Cambiamos el llamado al API para usarlo ahora con la capa de persistencia. */
     const data = getStorage('@products')
     setProducts(JSON.parse(data))
   }, [])

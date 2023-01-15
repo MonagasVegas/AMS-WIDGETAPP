@@ -9,7 +9,7 @@ function Home () {
         <Header />
       </div>
       <div className='self-center flex justify-center w-full'>
-        <img src={ilustracion} className='w-3/5 mt-10' />
+        <img src={ilustracion} className=' sm:w-3/5 mt-10' />
       </div>
     </div>
   )
