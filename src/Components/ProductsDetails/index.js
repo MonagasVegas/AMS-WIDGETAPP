@@ -5,9 +5,13 @@ import Card from '../Reusable/Card'
 import image from '../../assets/images/image.png'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getProductsById } from '../../services/getProductsById'
+// import { postProducts } from '../../services/postProducts'
 
 const ProductDetails = () => {
   const [product, setProduct] = useState([])
+  const [seletedColor, setSeletedColor] = useState(null)
+  const [selectedStorage, setSelectedStorage] = useState(null)
+
   const navigate = useNavigate()
   const { productID } = useParams()
 
@@ -18,12 +22,37 @@ const ProductDetails = () => {
   useEffect(() => {
     getProductsById(productID).then(res => {
       setProduct(res.data)
+      setSeletedColor(res.data.options.colors[0])
+      setSelectedStorage(res.data.options.storages[0])
     }).catch((error) => {
       console.log(error)
     })
   }, [productID])
 
-  console.log(product)
+  // const handleSubmit = () => {
+  //   const body = {}
+
+  //   postProducts(body).then(res => {
+  //     console.log(res)
+  //   }).catch((error) => {
+  //     console.log(error)
+  //   })
+  // }
+
+  const handleSelectOptions = (event, optionType) => {
+    /** obtener el codigo, el id, la opcion seleccionada. */
+    const code = event.currentTarget.id
+    console.log(code)
+    console.log(optionType)
+    if (optionType === 'color') {
+      setSeletedColor(product.options.colors.find(color => String(color.code) === code))
+    } else {
+      setSelectedStorage(product.options.storages.find(storage => String(storage.code) === code))
+    }
+  }
+
+  console.log({ seletedColor })
+  console.log({ selectedStorage })
 
   return (
     <>
@@ -76,18 +105,32 @@ const ProductDetails = () => {
 
           <footer className='h-full flex flex-col'>
             <div className='bg-[#f2f2f2] px-2 h-full'>
-              <p className='text-[10px] font-semibold py-4 text-[#013348]'>Ficha técnica del producto</p>
+              <p className='text-[18px] font-semibold py-4 text-[#013348]'>Ficha técnica del producto</p>
 
-              <div className='flex flex-col'>
-                <label className='text-[10px] not-italic font-semibold text-[#013348]'>
-                  <input type='checkbox' /> Almacenamiento
-                </label>
-                <label className=' text-[10px] not-italic font-semibold  text-[#013348]'>
-                  <input type='checkbox' /> Colores
-                </label>
+              <div className='flex flex-col  gap-2'>
+                <div>
+                  <p className='text-[14px] py-2 text-left not-italic font-semibold text-[#013348]'>Almacenamiento</p>
+                </div>
+                <div className='w-full grid grid-cols-3 gap-2 '>
+                  {product?.options?.storages.map((storage) => (
+                    <Card key={storage.code} id={storage.code} className={`w-1/2 py-2 cursor-pointer ${storage.code === selectedStorage?.code ? 'bg-red-500' : ''}`} onClick={(event) => handleSelectOptions(event, 'storage')}>
+                      <p className='text-[12px] text-center not-italic font-semibold text-[#013348] '>{`${storage.name}` || '-'}</p>
+                    </Card>
+                  ))}
+                </div>
+                <div>
+                  <p className='text-[14px] py-2 text-left not-italic font-semibold text-[#013348]'>Colores</p>
+                </div>
+                <div className='w-full grid grid-cols-4 gap-1 '>
+                  {product?.options?.colors?.map((color) => (
+                    <Card key={color.code} id={color.code} className={`w-1/2 py-2 cursor-pointer ${color.code === seletedColor?.code ? 'shadow-sm bg-red-500' : ''}`} onClick={(event) => handleSelectOptions(event, 'color')}>
+                      <p className='text-[12px] text-center not-italic font-semibold text-[#013348] '>{`${color.name}` || '-'}</p>
+                    </Card>
+                  ))}
+                </div>
               </div>
 
-              <div>&nbsp;&nbsp;</div>
+              <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
               <div className='flex justify-end'>
                 <button className='rounded-full mr-8 py-1 px-4 bg-[#dfdee3]'><p className='text-[#0e3453]'>Añadir</p></button>
                 <button className='rounded-full py-1 px-4 bg-[#dfdee3]' onClick={handleGoBack}><p className='text-[#0e3453]'>Volver</p></button>

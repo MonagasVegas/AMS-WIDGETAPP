@@ -17,5 +17,9 @@ module.exports = {
     'react'
   ],
   rules: {
+  },
+  globals: {
+    localStorage: true,
+    fetch: true
   }
 }

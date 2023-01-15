@@ -3,9 +3,10 @@ import SearchBar from '../Reusable/Search'
 import Card from '../Reusable/Card'
 import Img from '../../atomic-components/tags/Img'
 import image from '../../assets/images/image.png'
-import { getProducts } from '../../services/getProducts'
+// import { getProducts } from '../../services/getProducts'
 import { Header } from '../Home/Header'
 import { useNavigate } from 'react-router-dom'
+import useLocalStorage from '../Hooks/useLocalStorage'
 
 const Product = () => {
   const [products, setProducts] = useState([])
@@ -15,13 +16,17 @@ const Product = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const navigate = useNavigate()
 
+  const { getStorage } = useLocalStorage()
+
   useEffect(() => {
-    getProducts().then(res => {
-      const response = res.data
-      setProducts(response)
-    }).catch((error) => {
-      console.log(error)
-    })
+    // getProducts().then(res => {
+    //   const response = res.data
+    //   setProducts(response)
+    // }).catch((error) => {
+    //   console.log(error)
+    // })
+    const data = getStorage('@products')
+    setProducts(JSON.parse(data))
   }, [])
 
   const handleDetail = (event) => {

@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { urlFetch } from '../constants'
 
-export const postProducts = (id) => {
+export const postProducts = (body) => {
   return axios({
-    method: 'POS',
-    url: `${urlFetch}api/cart`
+    method: 'POST',
+    url: `${urlFetch}api/cart`,
+    data: body
   })
 }

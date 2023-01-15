@@ -2,9 +2,11 @@ import React from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded'
 import { Box } from '@material-ui/core'
 import logo from '../../../assets/images/logo.png'
+// import Drawer from '../../Reusable/Drawer'
 import { useNavigate } from 'react-router-dom'
 
 function Header () {
@@ -22,7 +24,9 @@ function Header () {
             <Button onClick={handleClick}>
               <img src={logo} className='w-10 h-10' />
             </Button>
-            <MenuRoundedIcon className='self-center  ' />
+            <IconButton>
+              <MenuRoundedIcon className='self-center' />
+            </IconButton>
           </div>
           <div className='self-center flex mr-14 '>
             <ShoppingCartIcon className='justify-between mr-5 self-center' />
