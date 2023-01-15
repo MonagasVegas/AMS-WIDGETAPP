@@ -1,75 +1,37 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
 # AMS-WIDGETAPP
-mini-aplicacion para comprar dispositivos moviles, construida en react.js 
->>>>>>> c4d7f6991059a5385dd8b2e2e5b10fbe3aec65d6
+mini-aplicación para comprar dispositivos moviles.
+
+Dicha aplicación contiene únicamente tres vistas: 
+1.	Vista principal – Home 
+2.	Listado de productos
+3.	Detalles del producto. 
+
+Detalles de las vistas:
+
+•	En el home nos conseguimos con un header que está conformado por,
+
+-	Un icono de la aplicación, actúa como enlace a la vista principal.
+-	Un menuBurger que por los momentos actúa como enlace a la vista de listado del producto.
+-	Un breadcrumbs, mostrando la página donde se encuentra el usuario, así como un link para su navegación.
+-	Un carrito de compras, el cual muestra el número de items que se hayan añadido al carrito.
+
+•	En la vista listado de productos, nos conseguimos un buscador y el listado de todos los productos disponible con un scroll infinito, conformado por,
+
+-	Para el buscador: 
+Se muestra un input, el cual permite la introducción de una cadena de texto. Se puede filtrar los productos en función del texto introducido, comparando con la Marca y el Modelo de los productos, todo esto en tiempo real. 
+
+-	Para la lista de productos:
+Muestra en una card  la Imagen, Marca, Modelo y Precio del producto, Si se selecciona un producto nos redirecciona a la vista de detalle de producto. 
+
+•	En la vista de detalle de producto,
+
+nos conseguimos con un modal divido en 3 partes, imagen del producto, detalles del producto y las acciones del producto.
+-En las acciones, tenemos dos tipos de selectores, almacenamiento y colores, los cuales se pueden añadir a la cesta del carrito de compras. Aunque solo exista una opción, se muestra el selector con la información seleccionada por defecto marcado en rojo.
+ Se visualiza un botón de Añadir, una vez seleccionada las opciones, se añadirá el producto a la cesta. 
+Este valor de productos añadidos se muestra en la cabecera de la aplicación en cualquier vista, (icono carrito de compras.) 
+- Se visualiza un botón de volver, actúa como enlace a la vista lista de productos.
+
+Dicha aplicación posee una capa de persistencia de datos:
+
+Posee un almacenaje de los datos que se reciban desde el API. ofrece un sistema de cacheo, para que no se realicen múltiples peticiones al API. Se almacena la información cada vez que se solicite el servicio del API , guarda dicha información, y tendrá una expiración de 1 hora, una vez excedido dicho tiempo,  revalida la información,  Se utiliza cualquier método de storage para almacenar dicha información, ya sea del navegador o en memoria, pero siempre en cliente.
+
