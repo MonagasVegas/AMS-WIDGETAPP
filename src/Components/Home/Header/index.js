@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import MenuRoundedIcon from '@material-ui/icons/MenuRounded'
-import Breadcrumbs from '@material-ui/core/Breadcrumbs'
-import NavigateNextIcon from '@material-ui/icons/NavigateNext'
-import Link from '@material-ui/core/Link'
-import Typography from '@material-ui/core/Typography'
-import Badge from '@material-ui/core/Badge'
+import {
+  ShoppingCart as ShoppingCartIcon,
+  AccountCircle as AccountCircleIcon,
+  MenuRounded as MenuRoundedIcon,
+  NavigateNext as NavigateNextIcon
+} from '@mui/icons-material'
+import { Button, IconButton, Breadcrumbs, Link, Typography, Badge } from '@mui/material'
 import logo from '../../../assets/images/logo.png'
 import useLocalStorage from '../../Hooks/useLocalStorage'
 
